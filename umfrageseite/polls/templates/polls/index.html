@@ -1,0 +1,39 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+<h1>{{Titel}}</h1>
+<p class="lead">
+    Herzlich willkommen auf meiner Seite. Bitte schliesst diese Seite nicht.
+</p>
+<hr />
+{% if Umfragen %}
+<ul>
+  {% for umfrage in Umfragen %}
+  <li> <a href="{% url 'umfrage-detail' umfrage.slug %}">{{ umfrage.name }} </a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+<br>
+Hallo zusammen <br>
+
+
+<button id="myClickButton" type="button">{{Value}}</button>
+<div id="myOutput"></div>
+
+
+
+<!-- this is my test -->
+<a href="{% url 'ttt' %}">Hello</a>
+
+
+<br>
+<br>
+<br>
+
+<form method="POST" action="{% url 'search'  %}">
+{% csrf_token %}
+<input type="text" name="textfield">
+<button type="submit">Upload text</button>
+</form>
+
+
+{% endblock %}

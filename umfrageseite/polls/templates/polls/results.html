@@ -1,0 +1,20 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+{% if umfrage %}
+<h1>{{umfrage.name}}</h1>
+<h2>Ergebnisse</h2>
+<p class="lead">Vielen Dank, dass du abgestimmt hast</p>
+
+  {% if umfrage.choice_set.all %}
+    <ul>
+      {% for choice in umfrage.choice_set.all %}
+      <li>{{choice.name}}, Votes = {{choice.votes}}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+{% endif %}
+
+<a href= "{% url  'index'%}">Zuruck zur Startseite.</a> 
+
+{% endblock %}

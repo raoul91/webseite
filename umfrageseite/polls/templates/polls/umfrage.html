@@ -1,0 +1,23 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+{% if umfrage %}
+<h1>{{umfrage.name}}</h1>
+<h2>moegliche antworten:</h2>
+
+{% if umfrage.choice_set.all %}
+<form action="{% url 'vote' umfrage.slug %}" method="post">
+    {% csrf_token %}
+    {% for x in umfrage.choice_set.all %}
+    <input type="radio" name="choice" value="{{x.id}}" id="{{forloop.counter}}"/>
+    <label for="{{forloop.counter}}">{{x.name}}</label>
+    {% endfor %}
+    <input type="submit" value="antwort absenden"/>
+</form>
+{% else %}
+<p>es kann keine antwort moeglichkeit gefunden werden</p>
+{% endif %}
+
+{% else %}
+<h1>es kann keine umfrage gefunden werden</h1>
+{% endif %}
+{% endblock %}

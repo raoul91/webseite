@@ -1,0 +1,31 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TEST</title>
+  </head>
+  <body>
+    <div>
+    <h1>Hey jungs, wie lauft's?</h1>
+    {% load static %}
+    <img src="{% static 'accounts/images/paretos_logo.jpg' %}" width="300" height="200">
+    <br>
+    <hr>
+    <ul>
+    <li><a href="{% url 'cyrillsPath' %}">F&uumlr Cyrill</a></li>
+    <li><a href="{% url 'silvansPath' %}">F&uumlr Silvan</a></li>
+    </ul>
+    <hr>
+    <p>Folgende Funktion berechnet die N-te Fakult&aumlt N! aus</p>
+    <form method="post" name="hello">
+      {%csrf_token%}
+      <!--input type="text"-->
+      {{form.as_p}}
+      <button type="submit">Berechnen</button>
+    </form>
+      <h1>{{ result }}</h1>
+    </div>
+  </body>
+</html>
+{% endblock %}
